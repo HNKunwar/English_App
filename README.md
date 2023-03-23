@@ -1,33 +1,35 @@
-# English_App
+# Conversational AI Program for Non-Native English Speakers
 
-Rudimentary mock-up/proof of concept version of a program meant to conversate with non-native English speakers and provide corrections on their grammar and help them change their accent if they desired. Ultimately the goal was to make it real time, have the chat bot working, and speak to the user and listen to user input, and track errors over time to help the user fix their weak spots. Goal was to focus mostly on grammar and syntax and if they so chose pronunciation. 
+This is a rudimentary mock-up/proof of concept version of a program meant to conversate with non-native English speakers and provide corrections on their grammar and help them change their accent if they desired. The ultimate goal is to make it real-time, have the chatbot working, and speak to the user and listen to user input, and track errors over time to help the user fix their weak spots. The focus is mostly on grammar and syntax and, if they so choose, pronunciation.
 
-Structure and Dependencies Used:
+## Structure and Dependencies Used
 
-1.To initiate the conversation along w some directing in the (chatbot.py) file.
-from chatterbot import ChatBot
-from chatterbot.trainers import ListTrainer
-from chatterbot.trainers import ChatterBotCorpusTrainer
-  
-2.To turn chatbot output text into speech (txt2speech.py).
-import pyttsx3
+The program is structured as follows:
 
-3.To record user input (r_audio.py): 
-import pyaudio
-import wave
+- **chatbot.py:** Initiates the conversation along with some directing. Uses the following dependencies:
+    - ChatterBot: A Python library that makes it easy to generate automated responses to a user's input.
+    - pyttsx3: A Python library for converting text to speech.
+- **r_audio.py:** Records user input. Uses the following dependencies:
+    - pyaudio: A Python library for working with audio.
+    - wave: A Python library for working with .wav files.
+- **speech2txt.py:** Converts the .wav file from r_audio.py to text. Uses the following dependency:
+    - whisper: A Python library for speech recognition.
+- **grammar.py:** Runs grammar correction on the user's text. Uses the following dependency:
+    - Ginger API: A grammar and spelling correction API.
 
-3. To turn .wav file from r_audio.py to text. (speech2txt.py)
-import whisper
+## Current Functionality
 
-4. To run grammar correction on the User Text (grammar.py)
-Ginger API
+Currently, the program can:
 
-Then these components are looped together. Best practices would have called for using the different files in an orchestrated manner, but I just shoved all of the code and imports into chatbot.py. Right now only this much works: 
--Can now talk with chatbot real time. 
--Bot (incredibly) rudimentary, 
--3 second response window.
+- Talk with the chatbot in real-time.
+- Use rudimentary responses from the chatbot.
+- Has a 3-second response window.
 
-Thoughts on Improvements Needed:
-  -Transition to either using directed OpenAI API calls for the chat or learn to build a simple conversational AI enough for the purposes needed here.
-  -Lot of these dependencies don't work very well on IOS or Android, haven't found a workaround yet other than remote server calls, which the best use case for this would be on a mobile device so it doesn't make sense to keep using these.
-  -Grammar correction through Ginger API is horrendous. Think combined with the nut job responses the rudimentary ChatBot gives, it'd actually have a net negative impact on the user. Again, OpenAI API calls directed and parsed properly might be the best here since it does exceptionally well in that department. There is an urge to make something from the ground-up for the sake of learning even if it'd be way too much effort for a much worse end product. 
+## Thoughts on Improvements Needed
+
+The following improvements are needed:
+
+- Transition to using directed OpenAI API calls for the chat or learn to build a simple conversational AI that is enough for the purposes needed here.
+- Find a workaround for dependencies that don't work well on IOS or Android, as the best use case for this would be on a mobile device.
+- Improve grammar correction, as the Ginger API is not effective enough. Combining this with the rudimentary responses from the chatbot could have a net negative impact on the user. Directed and parsed OpenAI API calls might be the best solution here.
+- There is an urge to make something from the ground-up for the sake of learning, even if it would be too much effort for a much worse end product.
